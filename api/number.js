@@ -13,8 +13,7 @@ export default async function handler(req, res) {
     return res.status(400).json({
       status: "error",
       message: "number parameter required",
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      developer: "Naresh"
     });
   }
 
@@ -22,16 +21,15 @@ export default async function handler(req, res) {
     return res.status(401).json({
       status: "error",
       message: "key required",
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      developer: "Naresh"
     });
   }
 
-  if (!key.startsWith('ADITYA-')) {
+  if (!key.startsWith('Naresh-')) {
     return res.status(401).json({
       status: "error",
       message: "invalid key",
-      developer: "Aditya"
+      developer: "Naresh"
     });
   }
 
@@ -41,25 +39,25 @@ export default async function handler(req, res) {
     );
     const data = await upstream.json();
 
+    const rawData = data.data || {};
+
     return res.status(200).json({
       status: data.status || "success",
       number: data.number || number,
       data: {
-        name: data.data?.name || "N/A",
-        fname: data.data?.fname || "N/A",
-        Address: data.data?.Address || "N/A",
-        alt_number: data.data?.alt_number || "N/A",
-        aadhar_id_number: data.data?.aadhar_id_number || "[Aadhaar Redacted]"
+        name: rawData.name || rawData.Name || "N/A",
+        fname: rawData.fname || rawData.father_name || rawData.fatherName || rawData.Fname || "N/A",
+        Address: rawData.Address || rawData.address || rawData.location || "N/A",
+        alt_number: rawData.alt_number || rawData.alt_num || rawData.altnum || rawData.altPhone || "N/A",
+        aadhar_id_number: rawData.aadhar_id_number || rawData.aadhar || rawData.aadhaar || rawData.aadhar_num || "[Aadhaar Redacted]"
       },
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      developer: "Naresh"
     });
   } catch (err) {
     return res.status(500).json({
       status: "error",
       message: "upstream fetch failed",
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      developer: "Naresh"
     });
   }
 }
