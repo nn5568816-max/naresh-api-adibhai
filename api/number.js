@@ -13,7 +13,8 @@ export default async function handler(req, res) {
     return res.status(400).json({
       status: "error",
       message: "number parameter required",
-      developer: "Naresh"
+      developer: "Aditya",
+      youtube: "https://youtube.com/@YourChannelHere"
     });
   }
 
@@ -21,16 +22,16 @@ export default async function handler(req, res) {
     return res.status(401).json({
       status: "error",
       message: "key required",
-      developer: "Naresh"
+      developer: "Aditya",
+      youtube: "https://youtube.com/@YourChannelHere"
     });
   }
 
-  // Key 'Naresh-' తో స్టార్ట్ అవ్వాలని ఇక్కడ చెక్ చేస్తుంది
-  if (!key.startsWith('Naresh-')) {
+  if (!key.startsWith('ADITYA-')) {
     return res.status(401).json({
       status: "error",
       message: "invalid key",
-      developer: "Naresh"
+      developer: "Aditya"
     });
   }
 
@@ -50,13 +51,15 @@ export default async function handler(req, res) {
         alt_number: data.data?.alt_number || "N/A",
         aadhar_id_number: data.data?.aadhar_id_number || "[Aadhaar Redacted]"
       },
-      developer: "Naresh"
+      developer: "Aditya",
+      youtube: "https://youtube.com/@YourChannelHere"
     });
   } catch (err) {
     return res.status(500).json({
       status: "error",
       message: "upstream fetch failed",
-      developer: "Naresh"
+      developer: "Aditya",
+      youtube: "https://youtube.com/@YourChannelHere"
     });
   }
 }
