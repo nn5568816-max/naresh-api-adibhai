@@ -13,8 +13,7 @@ export default async function handler(req, res) {
     return res.status(400).json({
       status: "error",
       message: "number parameter required",
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      developer: "Naresh"
     });
   }
 
@@ -22,16 +21,16 @@ export default async function handler(req, res) {
     return res.status(401).json({
       status: "error",
       message: "key required",
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      developer: "Naresh"
     });
   }
 
-  if (!key.startsWith('ADITYA-')) {
+  // Key 'Naresh-' తో స్టార్ట్ అవ్వాలని ఇక్కడ చెక్ చేస్తుంది
+  if (!key.startsWith('Naresh-')) {
     return res.status(401).json({
       status: "error",
       message: "invalid key",
-      developer: "Aditya"
+      developer: "Naresh"
     });
   }
 
@@ -44,16 +43,20 @@ export default async function handler(req, res) {
     return res.status(200).json({
       status: data.status || "success",
       number: data.number || number,
-      data: data.data || null,
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      data: {
+        name: data.data?.name || "N/A",
+        fname: data.data?.fname || "N/A",
+        Address: data.data?.Address || "N/A",
+        alt_number: data.data?.alt_number || "N/A",
+        aadhar_id_number: data.data?.aadhar_id_number || "[Aadhaar Redacted]"
+      },
+      developer: "Naresh"
     });
   } catch (err) {
     return res.status(500).json({
       status: "error",
       message: "upstream fetch failed",
-      developer: "Aditya",
-      youtube: "https://youtube.com/@YourChannelHere"
+      developer: "Naresh"
     });
   }
 }
